@@ -5,6 +5,7 @@ import { HandleWeightInput } from './components/HandleWeightInput';
 import { MaxPlatesInput } from './components/MaxPlatesInput';
 import { PlateManager } from './components/PlateManager';
 import { ResultsDisplay } from './components/ResultsDisplay';
+import { Summary } from './components/Summary';
 import { calculateWeights, convertWeight } from './utils/calculator';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import type { Plate, UnitSystem, CalculationMode, WeightResult } from './types';
@@ -118,43 +119,12 @@ function App() {
 
           {/* Column 4 - Summary Stats */}
           <div className="space-y-6">
-            {results.length > 0 && (
-              <div className="bg-muted/50 border rounded-lg p-4">
-                <h4 className="font-medium mb-2">Summary</h4>
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <span className="text-muted-foreground">Lightest:</span>
-                    <div className="font-medium">
-                      {results[0]?.totalWeight} {unitSystem}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Heaviest:</span>
-                    <div className="font-medium">
-                      {results[results.length - 1]?.totalWeight} {unitSystem}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Total plates:</span>
-                    <div className="font-medium">
-                      {plates.reduce((sum, plate) => sum + plate.quantity, 0)}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Combinations:</span>
-                    <div className="font-medium">
-                      {results.length}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Max plates/side:</span>
-                    <div className="font-medium">
-                      {maxPlatesPerSide}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+            <Summary
+              results={results}
+              plates={plates}
+              unitSystem={unitSystem}
+              maxPlatesPerSide={maxPlatesPerSide}
+            />
           </div>
         </div>
       </div>
