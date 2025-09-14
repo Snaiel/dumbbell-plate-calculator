@@ -94,19 +94,20 @@ export function calculateSingleDumbbellWeights(
 
 /**
  * Calculates all possible weights for pair mode
- * Uses only even quantities of plates (divide by 2 for each dumbbell)
+ * Requires 4x the plates (2 dumbbells × 2 sides each)
  */
 export function calculatePairModeWeights(
   plates: Plate[],
   handleWeight: number,
   maxPlatesPerSide?: number
 ): WeightResult[] {
-  // Create modified plates with only even quantities available
+  // Create modified plates accounting for needing 4x the plates
+  // (2 dumbbells × 2 sides each = 4 plates of each type needed)
   const pairPlates: Plate[] = plates
-    .filter(plate => plate.quantity >= 2)
+    .filter(plate => plate.quantity >= 4)
     .map(plate => ({
       ...plate,
-      quantity: Math.floor(plate.quantity / 2)
+      quantity: Math.floor(plate.quantity / 4)
     }));
   
   const combinations = generatePlateCombinations(pairPlates, maxPlatesPerSide);
