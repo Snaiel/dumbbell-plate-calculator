@@ -7,6 +7,7 @@ import { MaxPlatesInput } from './components/MaxPlatesInput';
 import { PlateManager } from './components/PlateManager';
 import { ResultsDisplay } from './components/ResultsDisplay';
 import { Summary } from './components/Summary';
+import { ThemeToggle } from './components/ThemeToggle';
 import { calculateWeights, convertWeight } from './utils/calculator';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import type { Plate, UnitSystem, CalculationMode, WeightResult } from './types';
@@ -52,7 +53,10 @@ function App() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-8xl">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="relative text-center mb-8">
+          <div className="absolute top-0 right-0">
+            <ThemeToggle />
+          </div>
           <h1 className="text-3xl font-bold text-foreground mb-2">
             Dumbbell Plate Calculator
           </h1>

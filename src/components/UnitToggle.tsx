@@ -12,7 +12,7 @@ export function UnitToggle({ currentUnit, onUnitChange }: UnitToggleProps) {
       type="single"
       value={currentUnit}
       onValueChange={(value) => value && onUnitChange(value as UnitSystem)}
-      className="bg-muted rounded-lg p-1"
+      className="border rounded-lg"
     >
       <ToggleGroupItem value="kg" className="h-8 px-3">
         kg

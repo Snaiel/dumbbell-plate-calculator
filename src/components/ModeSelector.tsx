@@ -17,7 +17,7 @@ export function ModeSelector({ currentMode, onModeChange }: ModeSelectorProps) {
         type="single"
         value={currentMode}
         onValueChange={(value) => value && onModeChange(value as CalculationMode)}
-        className="grid w-full grid-cols-2"
+        className="border grid w-full grid-cols-2"
       >
         <ToggleGroupItem value="single" className="h-8 px-3">
           Single
