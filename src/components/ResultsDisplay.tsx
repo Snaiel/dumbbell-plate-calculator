@@ -45,19 +45,24 @@ interface WeightCardProps {
 }
 
 function WeightCard({ result, unit, mode }: WeightCardProps) {
-  const totalPlateWeight = result.plateCombo.reduce(
-    (sum, usage) => sum + usage.plateWeight * usage.quantity,
-    0
-  );
+  const individualDumbbellWeight = result.totalWeight;
+  const totalWeight = mode === "pair" ? result.totalWeight * 2 : result.totalWeight;
 
   return (
     <div className="border rounded-lg p-4 bg-card">
       <div className="flex items-center justify-between mb-2">
-        <div className="text-xl font-bold text-primary">
-          {formatWeight(result.totalWeight, unit)}
+        <div className="space-y-1">
+          <div className="text-md font-bold text-primary">
+            {formatWeight(individualDumbbellWeight, unit)}
+          </div>
         </div>
         <div className="text-sm text-muted-foreground">
           {mode === "pair" ? "2 dumbbells" : "1 dumbbell"}
+          {mode === "pair" && (
+            <div className="text-sm text-muted-foreground">
+              {formatWeight(totalWeight, unit)} total
+            </div>
+          )}
         </div>
       </div>
 
@@ -78,18 +83,6 @@ function WeightCard({ result, unit, mode }: WeightCardProps) {
                   <span>{formatWeight(usage.plateWeight, unit)}</span>
                 </div>
               ))}
-          </div>
-          <div className="text-xs text-muted-foreground pt-1">
-            Plate weight per side: {formatWeight(totalPlateWeight, unit)}
-            {mode === "pair" && (
-              <span className="ml-2">
-                • Total plates needed:{" "}
-                {result.plateCombo.reduce(
-                  (sum, usage) => sum + usage.quantity * 2,
-                  0
-                )}
-              </span>
-            )}
           </div>
         </div>
       ) : (
