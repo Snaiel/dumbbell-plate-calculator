@@ -51,18 +51,22 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8 max-w-8xl">
+      <div className="container mx-auto px-2 py-4 sm:px-4 sm:py-8 max-w-8xl">
         {/* Header */}
-        <div className="relative text-center mb-8">
-          <div className="absolute top-0 right-0">
+        <div className="mb-8">
+          {/* Theme toggle at top right on all screen sizes */}
+          <div className="flex justify-end mb-4">
             <ThemeToggle />
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            Dumbbell Plate Calculator
-          </h1>
-          <p className="text-muted-foreground">
-            Calculate all possible dumbbell weights from your available plates
-          </p>
+          {/* Header content centered */}
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              Dumbbell Plate Calculator
+            </h1>
+            <p className="text-muted-foreground">
+              Calculate all possible dumbbell weights from your available plates
+            </p>
+          </div>
         </div>
 
         {/* Unit Toggle */}
