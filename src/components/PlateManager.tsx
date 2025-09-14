@@ -104,6 +104,7 @@ export function PlateManager({ plates, onPlatesChange, unit }: PlateManagerProps
             <Label className="text-xs text-muted-foreground mb-1">Weight ({unit})</Label>
             <Input
               type="number"
+              inputMode="decimal"
               value={newPlateWeight}
               onChange={(e) => setNewPlateWeight(e.target.value)}
               min="0"
@@ -116,6 +117,7 @@ export function PlateManager({ plates, onPlatesChange, unit }: PlateManagerProps
             <Label className="text-xs text-muted-foreground mb-1">Quantity</Label>
             <Input
               type="number"
+              inputMode="numeric"
               value={newPlateQuantity}
               onChange={(e) => setNewPlateQuantity(e.target.value)}
               min="1"

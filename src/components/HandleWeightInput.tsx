@@ -43,6 +43,7 @@ export function HandleWeightInput({
       <div className="flex items-center gap-2">
         <Input
           type="number"
+          inputMode="decimal"
           value={inputValue}
           onChange={(e) => handleInputChange(e.target.value)}
           onBlur={handleInputBlur}

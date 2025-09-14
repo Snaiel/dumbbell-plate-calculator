@@ -24,6 +24,7 @@ export function MaxPlatesInput({ maxPlates, onMaxPlatesChange }: MaxPlatesInputP
       <div className="space-y-1">
         <Input
           type="number"
+          inputMode="numeric"
           value={maxPlates}
           onChange={handleChange}
           min="1"

@@ -15,7 +15,7 @@ import './App.css';
 
 function App() {
   const [plates, setPlates] = useLocalStorage<Plate[]>('dumbbell-plates', []);
-  const [handleWeight, setHandleWeight] = useLocalStorage<number>('dumbbell-handle-weight', 2.5);
+  const [handleWeight, setHandleWeight] = useLocalStorage<number>('dumbbell-handle-weight', 2);
   const [maxPlatesPerSide, setMaxPlatesPerSide] = useLocalStorage<number>('dumbbell-max-plates', 6);
   const [unitSystem, setUnitSystem] = useLocalStorage<UnitSystem>('dumbbell-unit-system', 'kg');
   const [calculationMode, setCalculationMode] = useLocalStorage<CalculationMode>('dumbbell-calculation-mode', 'single');
