@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { Card, CardContent } from './components/ui/card';
 import { UnitToggle } from './components/UnitToggle';
 import { ModeSelector } from './components/ModeSelector';
 import { HandleWeightInput } from './components/HandleWeightInput';
@@ -71,50 +72,60 @@ function App() {
         <div className="grid xl:grid-cols-4 lg:grid-cols-2 gap-6">
           {/* Column 1 - Mode and Handle Settings */}
           <div className="space-y-6">
-            <div className="bg-card border rounded-lg p-6">
-              <ModeSelector
-                currentMode={calculationMode}
-                onModeChange={setCalculationMode}
-              />
-            </div>
+            <Card>
+              <CardContent>
+                <ModeSelector
+                  currentMode={calculationMode}
+                  onModeChange={setCalculationMode}
+                />
+              </CardContent>
+            </Card>
 
-            <div className="bg-card border rounded-lg p-6">
-              <HandleWeightInput
-                handleWeight={handleWeight}
-                onHandleWeightChange={setHandleWeight}
-                unit={unitSystem}
-              />
-            </div>
+            <Card>
+              <CardContent>
+                <HandleWeightInput
+                  handleWeight={handleWeight}
+                  onHandleWeightChange={setHandleWeight}
+                  unit={unitSystem}
+                />
+              </CardContent>
+            </Card>
 
-            <div className="bg-card border rounded-lg p-6">
-              <MaxPlatesInput
-                maxPlates={maxPlatesPerSide}
-                onMaxPlatesChange={setMaxPlatesPerSide}
-                unit={unitSystem}
-              />
-            </div>
+            <Card>
+              <CardContent>
+                <MaxPlatesInput
+                  maxPlates={maxPlatesPerSide}
+                  onMaxPlatesChange={setMaxPlatesPerSide}
+                  unit={unitSystem}
+                />
+              </CardContent>
+            </Card>
           </div>
 
           {/* Column 2 - Available Plates */}
           <div className="space-y-6">
-            <div className="bg-card border rounded-lg p-6">
-              <PlateManager
-                plates={plates}
-                onPlatesChange={setPlates}
-                unit={unitSystem}
-              />
-            </div>
+            <Card>
+              <CardContent>
+                <PlateManager
+                  plates={plates}
+                  onPlatesChange={setPlates}
+                  unit={unitSystem}
+                />
+              </CardContent>
+            </Card>
           </div>
 
           {/* Column 3 - Results */}
           <div className="space-y-6">
-            <div className="bg-card border rounded-lg p-6">
-              <ResultsDisplay
-                results={results}
-                unit={unitSystem}
-                mode={calculationMode}
-              />
-            </div>
+            <Card>
+              <CardContent>
+                <ResultsDisplay
+                  results={results}
+                  unit={unitSystem}
+                  mode={calculationMode}
+                />
+              </CardContent>
+            </Card>
           </div>
 
           {/* Column 4 - Summary Stats */}

@@ -1,4 +1,6 @@
+import { Input } from './ui/input';
 import type { UnitSystem } from '../types';
+import { CardTitle } from './ui/card';
 
 interface MaxPlatesInputProps {
   maxPlates: number;
@@ -16,17 +18,16 @@ export function MaxPlatesInput({ maxPlates, onMaxPlatesChange }: MaxPlatesInputP
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-foreground">
+      <CardTitle className="text-sm font-medium text-foreground">
         Max Plates Per Side
-      </label>
+      </CardTitle>
       <div className="space-y-1">
-        <input
+        <Input
           type="number"
           value={maxPlates}
           onChange={handleChange}
           min="1"
           max="20"
-          className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           placeholder="Max plates"
         />
         <p className="text-xs text-muted-foreground">

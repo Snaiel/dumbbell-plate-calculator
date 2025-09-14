@@ -1,5 +1,6 @@
-import { Button } from './ui/button';
+import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 import type { CalculationMode } from '../types';
+import { CardTitle } from './ui/card';
 
 interface ModeSelectorProps {
   currentMode: CalculationMode;
@@ -9,29 +10,24 @@ interface ModeSelectorProps {
 export function ModeSelector({ currentMode, onModeChange }: ModeSelectorProps) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-foreground">
+      <CardTitle className="text-sm font-medium text-foreground">
         Calculation Mode
-      </label>
-      <div className="flex items-center gap-2 p-1 bg-muted rounded-lg">
-        <Button
-          variant={currentMode === 'single' ? 'default' : 'ghost'}
-          size="sm"
-          onClick={() => onModeChange('single')}
-          className="h-8 px-3 flex-1"
-        >
-          Single Dumbbell
-        </Button>
-        <Button
-          variant={currentMode === 'pair' ? 'default' : 'ghost'}
-          size="sm"
-          onClick={() => onModeChange('pair')}
-          className="h-8 px-3 flex-1"
-        >
-          Pair Mode
-        </Button>
-      </div>
+      </CardTitle>
+      <ToggleGroup
+        type="single"
+        value={currentMode}
+        onValueChange={(value) => value && onModeChange(value as CalculationMode)}
+        className="grid w-full grid-cols-2"
+      >
+        <ToggleGroupItem value="single" className="h-8 px-3">
+          Single
+        </ToggleGroupItem>
+        <ToggleGroupItem value="pair" className="h-8 px-3">
+          Pair
+        </ToggleGroupItem>
+      </ToggleGroup>
       <p className="text-xs text-muted-foreground">
-        {currentMode === 'single' 
+        {currentMode === 'single'
           ? 'Calculate weights for one dumbbell using available plates'
           : 'Calculate matching weights for two dumbbells (requires even plate quantities)'
         }

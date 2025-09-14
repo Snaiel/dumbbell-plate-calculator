@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
 import { Plus, Trash2 } from 'lucide-react';
 import type { Plate, UnitSystem } from '../types';
 import { COMMON_PLATES } from '../types';
 import { isValidPlateWeight, isValidQuantity } from '../utils/calculator';
+import { CardTitle } from './ui/card';
 
 interface PlateManagerProps {
   plates: Plate[];
@@ -72,10 +75,10 @@ export function PlateManager({ plates, onPlatesChange, unit }: PlateManagerProps
 
   return (
     <div className="space-y-4">
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-foreground">
+      <div className="space-y-4">
+        <CardTitle className="text-sm font-medium text-foreground">
           Available Plates
-        </label>
+        </CardTitle>
         
         {/* Common plates quick add */}
         <div className="space-y-2">
@@ -98,25 +101,25 @@ export function PlateManager({ plates, onPlatesChange, unit }: PlateManagerProps
         {/* Add custom plate form */}
         <div className="flex gap-2 items-end">
           <div className="flex-1">
-            <label className="text-xs text-muted-foreground">Weight ({unit})</label>
-            <input
+            <Label className="text-xs text-muted-foreground mb-1">Weight ({unit})</Label>
+            <Input
               type="number"
               value={newPlateWeight}
               onChange={(e) => setNewPlateWeight(e.target.value)}
               min="0"
               step="0.1"
-              className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              className="h-8"
               placeholder="Weight"
             />
           </div>
           <div className="w-20">
-            <label className="text-xs text-muted-foreground">Quantity</label>
-            <input
+            <Label className="text-xs text-muted-foreground mb-1">Quantity</Label>
+            <Input
               type="number"
               value={newPlateQuantity}
               onChange={(e) => setNewPlateQuantity(e.target.value)}
               min="1"
-              className="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              className="h-8"
               placeholder="Qty"
             />
           </div>

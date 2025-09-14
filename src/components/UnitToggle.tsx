@@ -1,4 +1,4 @@
-import { Button } from './ui/button';
+import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 import type { UnitSystem } from '../types';
 
 interface UnitToggleProps {
@@ -8,23 +8,18 @@ interface UnitToggleProps {
 
 export function UnitToggle({ currentUnit, onUnitChange }: UnitToggleProps) {
   return (
-    <div className="flex items-center gap-2 p-1 bg-muted rounded-lg">
-      <Button
-        variant={currentUnit === 'kg' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onUnitChange('kg')}
-        className="h-8 px-3"
-      >
+    <ToggleGroup
+      type="single"
+      value={currentUnit}
+      onValueChange={(value) => value && onUnitChange(value as UnitSystem)}
+      className="bg-muted rounded-lg p-1"
+    >
+      <ToggleGroupItem value="kg" className="h-8 px-3">
         kg
-      </Button>
-      <Button
-        variant={currentUnit === 'lbs' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onUnitChange('lbs')}
-        className="h-8 px-3"
-      >
+      </ToggleGroupItem>
+      <ToggleGroupItem value="lbs" className="h-8 px-3">
         lbs
-      </Button>
-    </div>
+      </ToggleGroupItem>
+    </ToggleGroup>
   );
 }

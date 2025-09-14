@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Button } from './ui/button';
+import { Input } from './ui/input';
 import type { UnitSystem } from '../types';
+import { CardTitle } from './ui/card';
 
 interface HandleWeightInputProps {
   handleWeight: number;
@@ -34,19 +36,18 @@ export function HandleWeightInput({
 
   return (
     <div className="space-y-3">
-      <label className="text-sm font-medium text-foreground">
+      <CardTitle className="text-sm font-medium text-foreground">
         Handle Weight ({unit})
-      </label>
+      </CardTitle>
       
       <div className="flex items-center gap-2">
-        <input
+        <Input
           type="number"
           value={inputValue}
           onChange={(e) => handleInputChange(e.target.value)}
           onBlur={handleInputBlur}
           min="0"
           step="0.1"
-          className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           placeholder={`Enter handle weight in ${unit}`}
         />
         <span className="text-sm text-muted-foreground min-w-8">{unit}</span>

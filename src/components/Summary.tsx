@@ -1,3 +1,5 @@
+import { Card, CardContent, CardTitle } from "./ui/card";
+import { Table, TableBody, TableCell, TableRow } from "./ui/table";
 import type { WeightResult, UnitSystem, Plate } from "../types";
 
 interface SummaryProps {
@@ -36,18 +38,20 @@ export function Summary({ results, plates, unitSystem, maxPlatesPerSide }: Summa
   ];
 
   return (
-    <div className="bg-muted/50 border rounded-lg p-4">
-      <h4 className="text-md font-medium mb-3">Summary</h4>
-      <table className="w-full text-sm">
-        <tbody>
-          {summaryData.map((item, index) => (
-            <tr key={index}>
-              <td className="py-2 text-muted-foreground">{item.label}</td>
-              <td className="py-2 font-medium">{item.value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Card className="bg-muted">
+      <CardContent>
+        <CardTitle className="text-sm font-medium">Summary</CardTitle>
+        <Table>
+          <TableBody>
+            {summaryData.map((item, index) => (
+              <TableRow key={index}>
+                <TableCell className="py-2 text-muted-foreground text-sm">{item.label}</TableCell>
+                <TableCell className="py-2 font-medium text-sm">{item.value}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
   );
 }
