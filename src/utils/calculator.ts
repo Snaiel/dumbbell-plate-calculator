@@ -16,11 +16,18 @@ export function convertWeight(weight: number, fromUnit: 'kg' | 'lbs', toUnit: 'k
 /**
  * Generates all possible combinations of plates for a given set of available plates
  */
-function generatePlateCombinations(plates: Plate[]): PlateUsage[][] {
+function generatePlateCombinations(plates: Plate[], maxPlatesPerSide?: number): PlateUsage[][] {
   const combinations: PlateUsage[][] = [];
   
   function backtrack(index: number, currentCombo: PlateUsage[]) {
     if (index === plates.length) {
+      // Check if combination respects max plates per side constraint
+      if (maxPlatesPerSide !== undefined) {
+        const totalPlates = currentCombo.reduce((sum, usage) => sum + usage.quantity, 0);
+        if (totalPlates > maxPlatesPerSide) {
+          return;
+        }
+      }
       combinations.push([...currentCombo]);
       return;
     }
@@ -58,9 +65,10 @@ function calculatePlateWeight(plateCombo: PlateUsage[]): number {
  */
 export function calculateSingleDumbbellWeights(
   plates: Plate[],
-  handleWeight: number
+  handleWeight: number,
+  maxPlatesPerSide?: number
 ): WeightResult[] {
-  const combinations = generatePlateCombinations(plates);
+  const combinations = generatePlateCombinations(plates, maxPlatesPerSide);
   const results: WeightResult[] = [];
   const seenWeights = new Set<number>();
   
@@ -90,7 +98,8 @@ export function calculateSingleDumbbellWeights(
  */
 export function calculatePairModeWeights(
   plates: Plate[],
-  handleWeight: number
+  handleWeight: number,
+  maxPlatesPerSide?: number
 ): WeightResult[] {
   // Create modified plates with only even quantities available
   const pairPlates: Plate[] = plates
@@ -100,7 +109,7 @@ export function calculatePairModeWeights(
       quantity: Math.floor(plate.quantity / 2)
     }));
   
-  const combinations = generatePlateCombinations(pairPlates);
+  const combinations = generatePlateCombinations(pairPlates, maxPlatesPerSide);
   const results: WeightResult[] = [];
   const seenWeights = new Set<number>();
   
@@ -130,12 +139,13 @@ export function calculatePairModeWeights(
 export function calculateWeights(
   plates: Plate[],
   handleWeight: number,
-  mode: CalculationMode
+  mode: CalculationMode,
+  maxPlatesPerSide?: number
 ): WeightResult[] {
   if (mode === 'single') {
-    return calculateSingleDumbbellWeights(plates, handleWeight);
+    return calculateSingleDumbbellWeights(plates, handleWeight, maxPlatesPerSide);
   } else {
-    return calculatePairModeWeights(plates, handleWeight);
+    return calculatePairModeWeights(plates, handleWeight, maxPlatesPerSide);
   }
 }
 

@@ -27,7 +27,7 @@ export interface AppState {
 
 // Common plate weights for different unit systems
 export const COMMON_PLATES = {
-  kg: [0.5, 1, 1.25, 2, 2.5, 5],
+  kg: [0.5, 1, 1.25, 1.5, 2, 2.5, 5],
   lbs: [1, 2.5, 5, 10]
 } as const;
 
